@@ -1,2 +1,3 @@
 import selenium
-print()
+import selenium
+import selenium
