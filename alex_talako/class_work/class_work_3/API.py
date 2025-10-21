@@ -21,4 +21,4 @@ assert 'name' in response_json, 'Параметр отсутсвует'
 
 assert response_json['species'] == "[]", 'Ошибка, там не должно быть значения'
 
-https://swapi.dev/
+# https://swapi.dev/
