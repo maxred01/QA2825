@@ -1,8 +1,0 @@
-.idea
-.env
-.env.production
-.DS_Store
-.vscode/
-.idea/
-*.exe
-dist/

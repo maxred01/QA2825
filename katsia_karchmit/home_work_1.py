@@ -1,2 +1,0 @@
-My name is Katya.
-I'm 33.
