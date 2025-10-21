@@ -5,7 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad815d3a-c77c-4357-b3aa-a254b92d2575" name="Changes" comment="Подправил файл">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/QA2825.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alex_talako.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alex_talako/class_work/class_work_3/API.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anna_garbuzova.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anna_voytovich.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anna_voytovich/class_work/class_work_3/api.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/anna_voytovich/homework/anna_voytovich.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/k.maslukovskaya_dz1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/katsia.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/katsia_karchmit/home_work_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/katya_maslukovskaya/home_work/home_work_1/home_work_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/katya_maslukovskaya/home_work/{katya_maslukovskaya}.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761038679237</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Подправил файл">
+      <option name="closed" value="true" />
+      <created>1761061093118</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1761061093118</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,6 +183,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Добавила файл с данными о себе" />
     <MESSAGE value="Тестирование SWAPI дома" />
-    <option name="LAST_COMMIT_MESSAGE" value="Тестирование SWAPI дома" />
+    <MESSAGE value="Подправил файл" />
+    <option name="LAST_COMMIT_MESSAGE" value="Подправил файл" />
   </component>
 </project>
