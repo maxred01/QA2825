@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad815d3a-c77c-4357-b3aa-a254b92d2575" name="Changes" comment="Подправил файл">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/QA2825.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alex_talako.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/alex_talako/class_work/class_work_3/API.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anna_garbuzova.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anna_voytovich.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anna_voytovich/class_work/class_work_3/api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anna_voytovich/homework/anna_voytovich.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/k.maslukovskaya_dz1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/katsia.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/katsia_karchmit/home_work_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/katya_maslukovskaya/home_work/home_work_1/home_work_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/katya_maslukovskaya/home_work/{katya_maslukovskaya}.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="ad815d3a-c77c-4357-b3aa-a254b92d2575" name="Changes" comment="Подправил файл" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="class_work_3" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
