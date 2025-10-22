@@ -1,5 +1,19 @@
-# JetBrains IDE
+# IDE
 .idea/
 *.iws
 *.iml
 *.ipr
+.vscode/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+.venv/
