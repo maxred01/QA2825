@@ -1,2 +1,5 @@
-/.idea
-.idea
+# JetBrains IDE
+.idea/
+*.iws
+*.iml
+*.ipr
