@@ -6,10 +6,24 @@ response = requests.request("GET", url)
 
 response_json =response.json()
 
-#assert "diameter" in response.json() , 'параметр diameter нет в ответе'
+print(response_json)
 
-#assert response.json()["diameter"] == "10220", f'Диаметр {response_json["name"]} не равен 10220, а равен {response_json["diameter"]}'
+#Проверка статус кода
 
-assert len(response.json().get('residents',[])) == 0
+assert response.status_code == 200, f'Статус кода {response.status_code}'
 
-#assert response.json()["residents"] == []
+#Проверка, что в ответе есть поля: gravity, residents
+
+assert "gravity" in response.json() , 'параметр gravity нет в ответе'
+
+assert "residents" in response.json() , 'параметр residents нет в ответе'
+
+#Проверка, что значение в поле равно ожидаемому. Для полей: url, created
+
+assert "https://swapi.dev/api/planets/3/" in response_json['url'], "Значение в поле url отсутствует"
+
+assert '2014-12-10T11:37:19.144000Z' in response_json['created'], "Значение в поле created отсутствует"
+
+#Проверка, что значение поля url имеет тип данных str
+
+assert type(response_json['url']) == str,'В поле тип данных не str'
