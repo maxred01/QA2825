@@ -1,7 +1,6 @@
 import requests
 import json
 
-
 url = "https://reqres.in/api/users?delay=3"
 
 payload = {}

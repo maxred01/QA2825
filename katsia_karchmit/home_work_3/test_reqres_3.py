@@ -2,7 +2,6 @@ import pytest
 import requests
 import json
 
-
 @pytest.mark.parametrize("email,password,expected_status", [
     ("eve.holt@reqres.in", "pistol", 200),
     ("test@example.com", "kfjfnn@125", 400),
