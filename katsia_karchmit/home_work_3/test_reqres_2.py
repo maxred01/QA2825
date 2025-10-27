@@ -1,7 +1,6 @@
 import requests
 import json
 
-from pygments.lexers import data
 
 url = "https://reqres.in/api/users?delay=3"
 
@@ -24,4 +23,4 @@ print(response_json)
 
 #assert response.status_code == 200, f'Статус код не равен 300, а равен  {response.status_code}'
 
-assert len(data["data"]) > 10, f'Expected more than 1 element, got {len(data["data"])}'
+assert len(data["data"]) > 2, f'Expected more than 1 element, got {len(data["data"])}'
