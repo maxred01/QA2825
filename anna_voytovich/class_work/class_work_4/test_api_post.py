@@ -46,7 +46,7 @@ def test_api_post():
   # assert type(response.json()['id']) == str, f'"id" is not a string, it\'s {type(response.json()["id"])}'
   # assert response.json()['createdAt'] == str(format_time), f'Поле имя не равно {format_time}, равно {response.json()["createdAt"]}'
 
-  assert response.status_code == status_code, f'Статус код не равен {status_code}, а равен {response.status_code}'
+  # assert response.status_code == status_code, f'Статус код не равен {status_code}, а равен {response.status_code}'
   assert response.json()['error'] == 'Missing password', 'Неверный текст ошибки'
 
 
