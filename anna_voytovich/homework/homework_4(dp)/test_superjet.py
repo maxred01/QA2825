@@ -3,6 +3,7 @@ import pytest
 import requests
 
 
+
 url = "https://superjet.rostsayt.ru/"
 
 
