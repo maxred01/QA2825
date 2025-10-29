@@ -4,6 +4,7 @@ import requests, pytest, allure
 @allure.story('Проверка статус кода')
 
 @pytest.mark.parametrize('status_code, url, label', [
+    (200, "https://zelgavan.by/","Главная страница"),
     (200, "https://t.me/Zel_Gavan_bot", ""),
     (200, "https://zelgavan.by/infrastructure", "Инфраструктура"),
     (200,"https://yandex.by/maps/org/zhk_zelenaya_gavan/130388263400/?ll=27.741332%2C53.891943&mode=search&sctx=ZAAAAAgBEAAaKAoSCXmu78NBjjtAES%2F6CtKM80pAEhIJODKP%2FMHA1T8RVHHjFvNzvz8iBgABAgMEBSgKOABAnQFIAWoCdWGdAc3MTD2gAQCoAQC9ASevfUjCAQbog%2Fzd5QPqAQDyAQD4AQCCAjHQt9C10LvQtdC90LDRjyDQs9Cw0LLQsNC90Ywg0L7RhNC40YEg0L%2FRgNC%2B0LTQsNC2igIAkgIAmgIMZGVza3RvcC1tYXBz&sll=27.741332%2C53.891943&sspn=0.021243%2C0.007681&text=%D0%B7%D0%B5%D0%BB%D0%B5%D0%BD%D0%B0%D1%8F%20%D0%B3%D0%B0%D0%B2%D0%B0%D0%BD%D1%8C%20%D0%BE%D1%84%D0%B8%D1%81%20%D0%BF%D1%80%D0%BE%D0%B4%D0%B0%D0%B6&z=16","Подробный маршрут"),
