@@ -3,7 +3,6 @@ import allure
 import requests
 import json
 
-
 @allure.epic('Апи тесты')
 @allure.feature('Обработка заявки')
 @allure.story('Позитивные тесты')
