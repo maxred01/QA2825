@@ -5,7 +5,7 @@ API_TOKEN = '8353078171:AAEC9OJgRfq1gIG6n2Uhb8YbvJKaalaRcXM'
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text('Доброго времени суток! Я дипломный проект, созданный для запуска тестов, чтобы узнать подробную инфу напиши /about')
+    await update.message.reply_text('Доброго времени суток! Я дипломный проект, созданный для запуска тестов, чтобы узнать подробную инфу напиши /about\nДругие команды:\n/api - запускает api тесты\n/ui - запускает ui тесты')
 
 
 async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
