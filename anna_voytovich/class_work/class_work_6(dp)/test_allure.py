@@ -19,6 +19,7 @@ import json
     ("https://superjet.rostsayt.ru/", 403),
     ("https://superjet.rostsayt.ru/", 500),
 ])
+
 def test_application_status_code(url, expected_status_code):
     with allure.step('Подготовка тестовых данных'):
         url = "https://superjet.rostsayt.ru/"
