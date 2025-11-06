@@ -1,27 +1,35 @@
-import pytest
-import allure
 import requests
 import json
-
+import pytest
+import allure
 
 @allure.epic('Апи тесты')
 @allure.feature('Обработка заявки')
 @allure.story('Позитивные тесты')
-@allure.title('Проверка статус кода заявки')
-@pytest.mark.parametrize("url, expected_status_code", [
-    ("https://superjet.rostsayt.ru/", 200),
-    ("https://superjet.rostsayt.ru/", 100),
-    ("https://superjet.rostsayt.ru/", 400),
-    ("https://superjet.rostsayt.ru/", 503),
-    ("https://superjet.rostsayt.ru/", 104),
+
+@allure.title('Проверка ввода адреса электронной почты')
+@pytest.mark.parametrize("email" , [None,
+                                    "tester@test.com",
+                                    " tester@test.com",
+                                    "tester @test.com",
+                                    "@test.ru",
+                                    "tester",
+                                    "374098-",
+                                    "vj;oajf",
+                                    "",
+                                    " ",
+                                    "tester@test.com ",
+                                    "tester@test.",
+                                    "tester@.com",
+
 ])
-def test_application_status_code(url, expected_status_code):
+
+def test_application_status_code(email):
     with allure.step('Подготовка тестовых данных'):
         url = "https://superjet.rostsayt.ru/"
 
         payload = {
-            '%D0%98%D0%BC%D1%8F=test&%D0%A4%D0%B0%D0%BC%D0%B8%D0%BB%D0%B8%D1%8F=tester&%D0%A2%D0%B5%D0%BB%D0%B5%D1%84'
-            '%D0%BE%D0%BD*=%2B564841213579&E-mail=test_test%40gmail.com&feed_back=1&date=2025-10-29&date=2025-10-29 '
+            "E-mail": email
         }
         headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,'
@@ -50,4 +58,8 @@ def test_application_status_code(url, expected_status_code):
     with allure.step(f'Вызов метода {url}'):
         response = requests.request("GET", url, headers=headers, data=payload)
     with allure.step('Проверка статус кода заявки'):
-        assert response.status_code == expected_status_code, f'Статус код не равен {expected_status_code}, а равен {response.status_code}'
+        assert response.status_code == 200, f'Статус код не равен 200, а равен {response.status_code}'
+
+
+
+
