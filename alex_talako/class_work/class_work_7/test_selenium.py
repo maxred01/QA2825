@@ -1,4 +1,7 @@
 import time
+from os import times_result
+from re import search
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -6,29 +9,94 @@ from selenium.webdriver.common.keys import Keys
 
 def test_selenium():
     driver = webdriver.Chrome()
-
     driver.get('https://tryhackme.com/')
     driver.maximize_window()
-    driver.find_element(By.XPATH, '/html/body/div[3]/div[1]/div/div[1]/div/div/header/div/div[2]/div/div[1]/button').click()
-    # driver.find_element(By.XPATH, '/html/body/div[3]/div[1]/div/div[1]/div/div/header/div/div[1]/nav[1]/ul/li[2]/button').click()
-    element = driver.find_element(By.XPATH, '/html/body/div[3]/div[1]/div/div[1]/div/div/header/div/div[1]/nav[1]/ul/li[2]/div/div/a[1]/div')
+    driver.find_element(By.XPATH, '//button[@class="sc-jEACwC hnVovF sc-gqteRq ctqrBQ"]').click()
+    # time.sleep(3)
+    # driver.execute_script('window.scrollTo(0, document.body.scrollHeight)')
+    time.sleep(2)
 
-    time.sleep(3)
-    driver.find_element(By.XPATH, '/html/body/div[3]/div[1]/div/div[1]/div/div/header/div/div[2]/div/div[1]/div/div/div[1]/div/input').click()
-    driver.find_element(By.XPATH, '/html/body/div[3]/div[1]/div/div[1]/div/div/header/div/div[2]/div/div[1]/div/div/div[1]/div/input').send_keys('test')
-    driver.find_element(By.XPATH, '/html/body/div[3]/div[1]/div/div[1]/div/div/header/div/div[2]/div/div[1]/div/div/div[1]/div/input').send_keys(Keys.ENTER)
-    element_text = driver.find_element(By.XPATH, '/html/body/div[3]/div[1]/div/div[1]/div/main/div[2]/div/div/div/div[1]/div[2]/div[1]/input')
-    time.sleep(3)
-    assert element.text == 'test', f"Неверный текст. Получен {element_text.text}"
-    # assert element.is_displayed(), 'Этот элемент отсутствует на экране'
-    # assert element.is_enabled(), 'Этот элемент не кликабелен'
-    # assert element.text == 'Challenges\nReinforce your learning', f"Неверный текст. Получено {element.text}"
-    # driver.find_element(By.XPATH, '/html/body/div[3]/div[1]/div/div[1]/div/div/header/div/div[1]/nav[1]/ul/li[2]/button').click()
-    # driver.find_element(By.XPATH, '/html/body/div[3]/div[1]/div/div[1]/div/div/header/div/div[2]/div/div[1]/button').click()
-    # driver.find_element(By.XPATH, '/html/body/div[3]/div[1]/div/div[1]/div/div/header/div/div[1]/nav[1]/ul/li[2]/button').click()
 
-    # driver.execute_script('window.scrollBy(0, 1500)')
+    main_button = driver.find_element(By.XPATH, '(//img[@alt="TryHackMe"])[1]')
+    assert main_button.is_displayed(), 'Элемент отсутствует'
+    assert main_button.is_enabled(), 'Элемент не кликабелен'
+    assert main_button.text == '', f"Неверный текст. Получено {main_button}"
+    main_button.click()
+    time.sleep(2)
+
+    learn_button = driver.find_element(By.XPATH, '//*[@aria-label="Navigate to Learn page"]')
+    assert learn_button.is_displayed(), 'Элемент отсутствует'
+    assert learn_button.is_enabled(), 'Элемент не кликабелен'
+    assert learn_button.text == 'Learn', f"Неверный текст. Получено {learn_button}"
+    learn_button.click()
+    time.sleep(2)
+
+
+    practice_button = driver.find_element(By.XPATH, '//*[@aria-label="Toggle dropdown for Practice"]')
+    assert practice_button.is_displayed(), 'Элемент отсутствует'
+    assert practice_button.is_enabled(), 'Элемент не кликабелен'
+    assert practice_button.text == 'Practice', f"Неверный текст. Получено {practice_button}"
+    practice_button.click()
+    time.sleep(3)
+
+    compete_button = driver.find_element(By.XPATH, '//*[@aria-label="Toggle dropdown for Compete"]')
+    assert compete_button.is_displayed(), 'Элемент отсутствует'
+    assert compete_button.is_enabled(), 'Элемент не кликабелен'
+    assert compete_button.text == 'Compete', f"Неверный текст. Получено {compete_button}"
+    compete_button.click()
+    time.sleep(3)
+
+    education_button = driver.find_element(By.XPATH, '//*[@aria-label="Toggle dropdown for Education"]')
+    assert education_button.is_displayed(), 'Элемент отсутствует'
+    assert education_button.is_enabled(), 'Элемент не кликабелен'
+    assert education_button.text == 'Education', f"Неверный текст. Получено {education_button}"
+    education_button.click()
+    time.sleep(3)
+
+    business_button = driver.find_element(By.XPATH, '//*[@aria-label="Navigate to Business page"]')
+    assert business_button.is_displayed(), 'Элемент отсутствует'
+    assert business_button.is_enabled(), 'Элемент не кликабелен'
+    assert business_button.text == 'Business', f"Неверный текст. Получено {business_button}"
+    business_button.click()
+    time.sleep(3)
+
+    pricing_button = driver.find_element(By.XPATH, '//*[@aria-label="Navigate to Pricing page"]')
+    assert pricing_button.is_displayed(), 'Элемент отсутствует'
+    assert pricing_button.is_enabled(), 'Элемент не кликабелен'
+    assert pricing_button.text == 'Pricing', f"Неверный текст. Получено {pricing_button}"
+    pricing_button.click()
+    time.sleep(2)
+
+
+    search_button = driver.find_element(By.XPATH, '//*[@data-testid="search-btn"]')
+    assert search_button.is_displayed(), 'Элемент отсутствует'
+    assert search_button.is_enabled(), 'Элемент не кликабелен'
+    assert search_button.text == '', f"Неверный текст. Получено {search_button}"
+    search_button.click()
+    driver.find_element(By.XPATH, '//*[@data-testid="search-input"]').send_keys('kali')
+    time.sleep(2)
+    driver.find_element(By.XPATH, '//*[@data-testid="search-input"]').send_keys(Keys.ENTER)
+    time.sleep(2)
+    driver.find_element(By.XPATH, '(//*[@data-testid="new-content"]//a)[1]').click()
+    time.sleep(2)
+    main_button.click()
+
+
+    authorization_button = driver.find_element(By.XPATH, '(//*[@data-link="outlined"])[2]')
+    assert authorization_button.is_displayed(), 'Элемент отсутствует'
+    assert authorization_button.is_enabled(), 'Элемент не кликабелен'
+    assert authorization_button.text == 'Log In', f"Неверный текст. Получено {authorization_button}"
+    authorization_button.click()
+    time.sleep(3)
+
+    join_button = driver.find_element(By.XPATH, '//*[@data-link="join"]')
+    assert join_button.is_displayed(), 'Элемент отсутствует'
+    assert join_button.is_enabled(), 'Элемент не кликабелен'
+    assert join_button.text == 'Join for FREE', f"Неверный текст. Получено {join_button}"
+    join_button.click()
     time.sleep(3)
 
     driver.close()
     driver.quit()
+
+
