@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, CallbackContext
 
-API_TOKEN = "8003196291:AAEJg8rUllORuLN-8rJ6GHF5UwRAJS_3aR0"
+
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text('Привет! Я пример бота дип.проекта! Напиши /about чтобы узнать обо мне')
