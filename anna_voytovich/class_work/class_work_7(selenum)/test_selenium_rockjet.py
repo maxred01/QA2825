@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
+
 def test_selenium():
     driver = webdriver.Chrome()
 
@@ -21,6 +22,21 @@ def test_selenium():
     assert advantages_header.is_enabled(), 'Элемент не кликабелен'
     assert advantages_header.text == 'ПРЕИМУЩЕСТВА', f'Неверный текст. Получено {advantages_header.text}'
     advantages_header.click()
+
+    time.sleep(2)
+    arrow_forward_button = driver.find_element(By.XPATH, "(//*[@role='presentation' and contains(concat(' ', normalize-space(@class), ' '), ' owl-next ')])[1]")
+    arrow_forward_button.click()
+    # driver.implicitly_wait(10)
+    time.sleep(1)
+    arrow_forward_button.click()
+    time.sleep(1)
+
+    arrow_backward_button = driver.find_element(By.XPATH, '(//*[@type="button" and @role="presentation"])[1]')
+    arrow_backward_button.click()
+    time.sleep(1)
+    arrow_backward_button.click()
+
+
 
     time.sleep(3)
 
@@ -61,7 +77,18 @@ def test_selenium():
     assert comfort_header.text == 'КОМФОРТ', f'Неверный текст. Получено {comfort_header.text}'
     comfort_header.click()
 
-    time.sleep(3)
+    # time.sleep(2)
+    # link_video = driver.find_element(By.XPATH, "//*[@aria-label='Смотреть' and contains(concat(' ', normalize-space(@class), ' '), ' ytp-large-play-button ')]")
+    # link_video.click()
+    # time.sleep(1)
+    # youtube_play_button = driver.find_element(By.XPATH,"|//*[@aria-label='Смотреть' and contains(concat(' ', normalize-space(@class), ' '), ' ytp-large-play-button ')]")
+    # youtube_play_button.click()
+    # time.sleep(5)
+    #
+    # exit_video = driver.find_element(By.XPATH, "//*[contains(concat(' ', normalize-space(@class), ' '), ' myBackdrop ')]")
+    # exit_video.click()
+
+    time.sleep(2)
 
 
     buy_header = driver.find_element(By.XPATH, '(//header//ul//*[@aria-current="page" and @href="#feedbacks"])[1]')
