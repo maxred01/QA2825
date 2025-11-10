@@ -7,9 +7,9 @@ def test_selenium():
 
     driver.get('https://zrobim.by/')
     driver.maximize_window()
-    time.sleep(4)
+    time.sleep(10)
     #проверка кнопки "меню"
-    driver.find_element(By.XPATH, '//div[@class="menu-open__text"]').click()
+    #driver.find_element(By.XPATH, '//div[@class="menu-open__text"]').click()
     # #проверка кнопки "Реализованные проекты"
     # element = driver.find_element(By.XPATH, '//*[text()="Реализованные проекты"]')
     # assert element.is_displayed(), 'Элемента нет на экране'
@@ -22,10 +22,10 @@ def test_selenium():
     # driver.execute_script('window.scrollBy(0,2000)')
     # time.sleep(6)
     # проверка кнопки "консультант"
-    #driver.find_element(By.XPATH, '//button[contains(text(),"консультант")]').click()
-    #time.sleep(6)
+    driver.find_element(By.XPATH, "//*[contains(concat(' ', normalize-space(@class), ' '), ' header__header ')]//button").click()
+    time.sleep(12)
     # проверка заполнения поля
-    #driver.find_element(By.XPATH, '//*[@id="feedback-name"]').send_keys('Karl')
+    driver.find_element(By.XPATH, '(//*[@id="feedback-name" and @name="name" and @type="text"])[2]').send_keys('Karl')
 
     #проверка кнопки вакансии
     # driver.find_element(By.XPATH, '//a[contains(text(),"Вакансии") and //div[@id="menu"]]').click()
@@ -34,12 +34,12 @@ def test_selenium():
     # driver.find_element(By.XPATH, '//input[@name="name"][1]').send_keys('Karl')
 
     #проверка кнопки контакты
-    driver.find_element(By.XPATH, '//a[text()="Контакты"]').click()
-    time.sleep(2)
-    driver.execute_script('window.scrollBy(0,2000)')
-    time.sleep(2)
+    # driver.find_element(By.XPATH, '//a[text()="Контакты"]').click()
+    # time.sleep(2)
+    # driver.execute_script('window.scrollBy(0,2000)')
+    # time.sleep(2)
     # проверка заполнения поля
-    driver.find_element(By.XPATH, '//*[@id="feedback-comment"]').send_keys('Work in your company.')
+    # driver.find_element(By.XPATH, '//*[@id="feedback-comment"]').send_keys('Work in your company.')
 
     time.sleep(6)
     driver.close()
