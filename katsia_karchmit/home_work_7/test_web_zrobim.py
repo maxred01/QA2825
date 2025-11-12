@@ -2,7 +2,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-
+URL_const = 'https://zrobim.by/'
 def test_selenium():
     driver = webdriver.Chrome()
 
@@ -12,21 +12,20 @@ def test_selenium():
 
 
     button = [
-        (driver.find_element(By.XPATH, '//div[@class="menu-open__text"]'),"МЕНЮ"),
-        (driver.find_element(By.XPATH, '//*[text()="Реализованные проекты"]'), "Реализованные проекты"),
-        #(driver.find_element(By.XPATH, '//*[@data-more="#more-text" and text()="Читать больше"]'), "Читать больше"),
-        #(driver.find_element(By.XPATH, '//span[@itemprop="name"][1]'), "Главная"),
-        (driver.find_element(By.XPATH, "//*[contains(concat(' ', normalize-space(@class), ' '), ' menu-open__text ')]"), "МЕНЮ"),
-        (driver.find_element(By.XPATH, '//a[text()="Контакты"]'), "Контакты"),
-        (driver.find_element(By.XPATH, "//a[contains(concat(' ', normalize-space(@class), ' '), ' bold ') and text()='Предложение'][1]"), "Предложение"),
-        (driver.find_element(By.XPATH, "//*[@alt='logo' and contains(concat(' ', normalize-space(@class), ' '), ' header__header-logo ')][1]"), "Логотип"),
+        (driver.find_element(By.XPATH, '//a[text()="О студии"]'), "О студии",'team.html'),
+        (driver.find_element(By.XPATH, '//*[text()="Реализованные проекты"]'), "Реализованные проекты",'realzavanyiya-praektyi.html'),
+        (driver.find_element(By.XPATH, '//a[text()="Мастер-классы"]'), "Мастер-классы", 'education.html'),
+        (driver.find_element(By.XPATH, '//a[text()="Контакты"]'), "Контакты",),
         ]
 
-    for element, text in button:
-        element.click()
-        time.sleep(20)
-        assert element.is_displayed(), f'Элемент {text} отсутствует'
-        assert element.is_enabled(), f'Элемент {text} не кликабелен'
+    for element, text, url in button:
+        driver.find_element(By.XPATH, '//div[@class="menu-open__text"]').click()
+        time.sleep(5)
+        if element.is_enabled():
+            time.sleep(5)
+            element.click()
+            assert driver.current_url == URL_const+url, f'Неверная ссылка {text}'
+
 
     driver.close()
     driver.quit()

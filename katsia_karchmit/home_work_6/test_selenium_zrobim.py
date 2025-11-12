@@ -1,9 +1,7 @@
 import time
 from selenium import webdriver
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
 
 def test_selenium():
     driver = webdriver.Chrome()
@@ -26,6 +24,7 @@ def test_selenium():
     time.sleep(3)
     driver.execute_script('window.scrollBy(0,3000)')
     time.sleep(3)
+    #проверка запуска видео
     # video_element = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//*[@data-caption='LEV APARTMENT' and contains(concat(' ', normalize-space(@class), ' '), ' youtube__item ')]")))
     # driver.execute_script("arguments[0].click()", video_element)
     # time.sleep(15)
@@ -40,6 +39,7 @@ def test_selenium():
     # проверка заполнения поля
     driver.find_element(By.XPATH, '(//*[@id="feedback-name" and @name="name" and @type="text"])[2]').send_keys('Karl')
     driver.find_element(By.XPATH, '//*[@fill="none"][1]').click()
+
     #проверка кнопки вакансии
     driver.find_element(By.XPATH, '//div[@class="menu-open__text"]').click()
     time.sleep(3)
@@ -56,6 +56,7 @@ def test_selenium():
     time.sleep(4)
     driver.execute_script('window.scrollBy(0,3000)')
     time.sleep(4)
+
     #проверка заполнения поля
     driver.find_element(By.XPATH, '//*[@id="feedback-comment"]').send_keys('Work in your company.')
     time.sleep(4)
