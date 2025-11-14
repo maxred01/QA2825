@@ -22,9 +22,16 @@ def test_selenium():
     assert advantages_header.text == 'ПРЕИМУЩЕСТВА', f'Неверный текст. Получено {advantages_header.text}'
     advantages_header.click()
     time.sleep(1)
-    driver.find_element(By.XPATH,"(//*[@type='button' and @role='presentation' and contains(concat(' ', normalize-space(@class), ' '), ' owl-next ')])[1]").click()
+    assert driver.find_element(By.XPATH,'//div[@class="owl-item active center"]//img[@src="assets/images/slider/01.jpg"]').is_displayed()
+    driver.find_element(By.XPATH, '//button[@class="owl-next"]').click()
     time.sleep(1)
-    driver.find_element(By.XPATH,"(//*[@type='button' and @role='presentation' and contains(concat(' ', normalize-space(@class), ' '), ' owl-prev ')])[1]").click()
+    assert driver.find_element(By.XPATH,'//div[@class="owl-item active center"]//img[@src="assets/images/slider/02.jpg"]').is_displayed()
+    driver.find_element(By.XPATH, '//button[@class="owl-next"]').click()
+    time.sleep(1)
+    assert driver.find_element(By.XPATH,'//div[@class="owl-item active center"]//img[@src="assets/images/slider/03.jpg"]').is_displayed()
+    driver.find_element(By.XPATH, '//button[@class="owl-next"]').click()
+    time.sleep(1)
+    assert driver.find_element(By.XPATH,'//div[@class="owl-item active center"]//img[@src="assets/images/slider/04.jpg"]').is_displayed()
 
     time.sleep(1)
 
@@ -82,6 +89,15 @@ def test_selenium():
 
     app_button = driver.find_element(By.XPATH, '//button[@class="feedback-btn"]')
     app_button.click()
+
+
+    driver.find_element(By.XPATH, '//input[@name="Имя"]').send_keys('Michael')
+    driver.find_element(By.XPATH, '//input[@name="Фамилия"]').send_keys('HOdjekn')
+    driver.find_element(By.XPATH, '//input[@name="Телефон*"]').send_keys('+8393045384')
+    driver.find_element(By.XPATH, '//input[@name="E-mail"]').send_keys('djfoiwefh@gmail.com')
+    driver.find_element(By.XPATH, '//label[@for="checkbok"]').click()
+    driver.find_element(By.XPATH, '//button[@type="submit" and @name="feed_back"]').click()
+
 
     time.sleep(2)
 
