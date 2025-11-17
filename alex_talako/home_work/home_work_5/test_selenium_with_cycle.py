@@ -5,7 +5,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 URL_CONST = 'https://tryhackme.com/'
+
 
 def test_selenium_with_cycle():
     driver = webdriver.Chrome()
@@ -30,12 +32,14 @@ def test_selenium_with_cycle():
         assert element.is_enabled(), f'Элемент {text} не кликабелен'
         assert driver.current_url == URL_CONST + url, f'Неверная ссылка {text}'
 
+
     practice_button = driver.find_element(By.XPATH, '//*[@aria-label="Toggle dropdown for Practice"]')
     assert practice_button.is_displayed(), 'Элемент отсутствует'
     assert practice_button.is_enabled(), 'Элемент не кликабелен'
     assert practice_button.text == 'Practice', f"Неверный текст. Получено {practice_button}"
     practice_button.click()
     time.sleep(2)
+
 
     challenges_button = driver.find_element(By.XPATH, '(//*[@data-testid="splitScreenMiddle"]//*[@type="main"])[1]')
     assert challenges_button.is_displayed(), 'Элемент отсутствует'
@@ -46,6 +50,7 @@ def test_selenium_with_cycle():
     practice_button.click()
     time.sleep(2)
 
+
     soc_simulator_button = driver.find_element(By.XPATH,'(//*[@type="main"])[3]')
     assert soc_simulator_button.is_displayed(), 'Элемент отсутствует'
     assert soc_simulator_button.is_enabled(), 'Элемент не кликабелен'
@@ -54,6 +59,7 @@ def test_selenium_with_cycle():
     time.sleep(4)
     practice_button.click()
     time.sleep(2)
+
 
     threat_button = driver.find_element(By.XPATH,'(//*[@type="main"])[5]')
     assert threat_button.is_displayed(),'Элемент отсутствует'
@@ -64,12 +70,14 @@ def test_selenium_with_cycle():
     practice_button.click()
     time.sleep(2)
 
+
     certified_button = driver.find_element(By.XPATH,'//*[@aria-orientation="vertical"]//*[@aria-haspopup="menu"]/*[1]')
     assert certified_button.is_displayed(),'Элемент отсутствует'
     assert certified_button.is_enabled(), 'Элемент не кликабелен'
     assert certified_button.text == 'Get certified\nVerify your skills', f"Неверный текст. Получено {certified_button}"
     certified_button.click()
     time.sleep(2)
+
 
     pt_button = driver.find_element(By.XPATH,'(//*[@type="other"])[1]')
     assert pt_button.is_displayed(),'Элемент отсутствует'
@@ -80,6 +88,7 @@ def test_selenium_with_cycle():
     practice_button.click()
     time.sleep(2)
 
+
     sal_button = driver.find_element(By.XPATH,'(//*[@type="other"])[3]')
     assert sal_button.is_displayed(),'Элемент отсутствует'
     assert sal_button.is_enabled(), 'Элемент не кликабелен'
@@ -88,6 +97,7 @@ def test_selenium_with_cycle():
     time.sleep(4)
     practice_button.click()
     time.sleep(2)
+
 
     tabletop_button = driver.find_element(By.XPATH,'(//*[@type="main"])[9]')
     assert tabletop_button.is_displayed(),'Элемент отсутствует'
@@ -105,6 +115,7 @@ def test_selenium_with_cycle():
     assert driver.find_element(By.XPATH,'//a[contains(text(), "Exercises")]').is_enabled(), f'Элемент {text} не кликабелен'
     assert driver.current_url == URL_CONST + f"{url}", f'Неверная ссылка {text}'
 
+
     driver.find_element(By.XPATH, '//a[contains(text(), "Profiles")]').click()
     text = 'Profiles'
     url = 'tabletop-exercises/profiles'
@@ -112,6 +123,7 @@ def test_selenium_with_cycle():
     assert driver.find_element(By.XPATH,'//a[contains(text(), "Profiles")]').is_displayed(), f'Элемент {text} отсутствует'
     assert driver.find_element(By.XPATH,'//a[contains(text(), "Profiles")]').is_enabled(), f'Элемент {text} не кликабелен'
     assert driver.current_url == URL_CONST + f"{url}", f'Неверная ссылка {text}'
+
 
     driver.find_element(By.XPATH, '//a[contains(text(), "Reports")]').click()
     text = 'Reports'
@@ -129,6 +141,7 @@ def test_selenium_with_cycle():
     compete_button.click()
     time.sleep(2)
 
+
     compete_king_button = driver.find_element(By.XPATH, '(//*[@type="main"])[1]')
     assert compete_king_button.is_displayed(), 'Элемент отсутствует'
     assert compete_king_button.is_enabled(), 'Элемент не кликабелен'
@@ -138,12 +151,14 @@ def test_selenium_with_cycle():
     compete_button.click()
     time.sleep(2)
 
+
     leaderboards_button = driver.find_element(By.XPATH, '(//*[@type="main"])[3]')
     assert leaderboards_button.is_displayed(),'Элемент отсутствует'
     assert leaderboards_button.is_enabled(),'Элемент не кликабелен'
     assert leaderboards_button.text == 'Leaderboards\nPlatform Rankings', f"Неверный текст. Получено {leaderboards_button}"
     leaderboards_button.click()
     time.sleep(2)
+
 
     education_button = driver.find_element(By.XPATH, '//*[@aria-label="Toggle dropdown for Education"]')
     assert education_button.is_displayed(), 'Элемент отсутствует'
@@ -152,12 +167,14 @@ def test_selenium_with_cycle():
     education_button.click()
     time.sleep(2)
 
+
     teaching_button = driver.find_element(By.XPATH, '(//*[@data-testid="splitScreenMiddle"]//*[@type="main"])[1]')
     assert teaching_button.is_displayed(), 'Элемент отсутствует'
     assert teaching_button.is_enabled(), 'Элемент не кликабелен'
     assert teaching_button.text == 'Teaching\nUse our security labs', f"Неверный текст. Получено {teaching_button}"
     teaching_button.click()
     time.sleep(2)
+
 
     business_button = driver.find_element(By.XPATH, '//*[@aria-label="Navigate to Business page"]')
     assert business_button.is_displayed(), 'Элемент отсутствует'
@@ -166,12 +183,14 @@ def test_selenium_with_cycle():
     business_button.click()
     time.sleep(3)
 
+
     pricing_button = driver.find_element(By.XPATH, '//*[@aria-label="Navigate to Pricing page"]')
     assert pricing_button.is_displayed(), 'Элемент отсутствует'
     assert pricing_button.is_enabled(), 'Элемент не кликабелен'
     assert pricing_button.text == 'Pricing', f"Неверный текст. Получено {pricing_button}"
     pricing_button.click()
     time.sleep(3)
+
 
     search_button = driver.find_element(By.XPATH, '//*[@data-testid="search-btn"]')
     assert search_button.is_displayed(), 'Элемент отсутствует'
@@ -195,12 +214,14 @@ def test_selenium_with_cycle():
     driver.find_element(By.XPATH, '(//*[@data-testid="new-content"]//a)[1]').click()
     time.sleep(3)
 
+
     authorization_button = driver.find_element(By.XPATH, '(//*[@data-link="outlined"])[2]')
     assert authorization_button.is_displayed(), 'Элемент отсутствует'
     assert authorization_button.is_enabled(), 'Элемент не кликабелен'
     assert authorization_button.text == 'Log In', f"Неверный текст. Получено {authorization_button}"
     authorization_button.click()
     time.sleep(3)
+
 
     join_button = driver.find_element(By.XPATH, '//*[@data-link="join"]')
     assert join_button.is_displayed(), 'Элемент отсутствует'
