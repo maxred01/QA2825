@@ -212,3 +212,4 @@ def test_selenium_with_cycle():
 
     driver.close()
     driver.quit()
+
