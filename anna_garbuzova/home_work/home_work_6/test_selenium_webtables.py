@@ -22,7 +22,6 @@ def test_selenium():
 
     assert filled_rows == 3, f"В таблице заполнено {filled_rows} строки"
 
-
     add_button = driver.find_element(By.XPATH, '//button[@id="addNewRecordButton"]')
     add_button.click()
     time.sleep(3)
