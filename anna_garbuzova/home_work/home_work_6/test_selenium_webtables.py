@@ -7,7 +7,6 @@ from selenium.webdriver.common.by import By
 
 
 
-
 def test_selenium():
 
     driver = webdriver.Chrome()
@@ -19,7 +18,6 @@ def test_selenium():
     rows = driver.find_elements(By.XPATH, '//div[@role="rowgroup"]')
     empty_rows = driver.find_elements(By.XPATH, '//div[@class="rt-tr -padRow -even"]') + driver.find_elements(By.XPATH,'//div[@class="rt-tr -padRow -odd"]')
     filled_rows = len(rows) - len(empty_rows)
-
     assert filled_rows == 3, f"В таблице заполнено {filled_rows} строки"
 
     add_button = driver.find_element(By.XPATH, '//button[@id="addNewRecordButton"]')
@@ -43,9 +41,7 @@ def test_selenium():
     rows = driver.find_elements(By.XPATH, '//div[@role="rowgroup"]')
     empty_rows = driver.find_elements(By.XPATH, '//div[@class="rt-tr -padRow -even"]') + driver.find_elements(By.XPATH,'//div[@class="rt-tr -padRow -odd"]')
     filled_rows = len(rows) - len(empty_rows)
-
     assert filled_rows == 4, f"В таблице заполнено {filled_rows} строки"
-
 
     delete_button = driver.find_element(By.XPATH, '//span[@id="delete-record-1"]')
     delete_button.click()
