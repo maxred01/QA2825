@@ -3,13 +3,15 @@ import json
 import pytest
 
 @pytest.mark.parametrize("email", [None,
-                                   "peter@klaven",])
-                                   "peter@",])
-                                   "peter",])
-                                   "@klaven",])
-                                   "",])
-                                   " ",])
-                                   "peter @klaven",])
+                                   "peter@klaven",
+                                   "peter",
+                                   "peter12@23klaven",
+                                   "@peter@klaven",
+                                   "@peterklaven",
+                                   "",
+                                   " ",
+                                   "peter @klaven",
+                                   ])
 def test_api_post(email):
   #from datetime import datetime, timezone
 

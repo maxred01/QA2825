@@ -4,7 +4,7 @@ import pytest, json, requests, allure
 @allure.title(f'Апи тесты сайта')
 @allure.story(f'Проверка статус кода сайта')
 
-def test_api_post():
+def test_api_get():
     with allure.step("Подготовка тестовых данных"):
         url = "https://zrobim.by/"
 
@@ -52,3 +52,79 @@ def test_link(status_code, url, name):
 
     with allure.step(f"Проверка статус кода ссылок на сайте"):
         assert response.status_code == status_code, f'Статус код не равен 200. Статус код равен {response.status_code}'
+
+@allure.title(f'Апи тесты сайта')
+@allure.story(f'Проверка статус кода авторизации')
+
+def test_api_post():
+    with allure.step("Подготовка тестовых данных"):
+        url = "https://zrobim.by/"
+
+        headers = {
+            'accept': '*/*',
+            'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+            'content-type': 'application/json; charset=UTF-8',
+            'origin': 'https://zrobimeducation.by',
+            'priority': 'u=1, i',
+            'referer': 'https://zrobimeducation.by/',
+            'sec-ch-ua': '"Chromium";v="142", "Google Chrome";v="142", "Not_A Brand";v="99"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'cross-site',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36',
+            'Cookie': '__ddg10_=1763555538; __ddg1_=GCcDAcXlNT32wwyZlpJy; __ddg8_=jBfmByeiU1UhxZJ5; __ddg9_=37.214.65.148'
+        }
+    with allure.step("Вызов метода api/zrobim.by/"):
+        response = requests.request("POST", url, headers=headers)
+
+    with allure.step("Проверка статус кода "):
+        assert response.status_code == 200, f'Статус код не равен 200. Статус код равен {response.status_code}'
+
+@allure.title(f'Апи тесты сайта')
+@allure.story(f'Проверка статус кода авторизации email')
+
+@pytest.mark.parametrize("email", [None,
+                                   "test@mail",
+                                   "test",
+                                   "test12@23test",
+                                   "@test@mail",
+                                   "@test",
+                                   "",
+                                   " ",
+                                   "test @mail",
+                                   ])
+def test_api_post(email):
+
+
+    URL = 'https://zrobim.by/'
+    email = 'test@mail.ru'
+
+    payload = "{\"login\":\"test@mail.ru\",\"password\":\"123no&d\",\"projectid\":\"7752282\",\"pageurl\":\"https://zrobimeducation.by/members/login\"}"
+
+    headers = {
+        'accept': '*/*',
+        'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+        'content-type': 'application/json; charset=UTF-8',
+        'origin': 'https://zrobimeducation.by',
+        'priority': 'u=1, i',
+        'referer': 'https://zrobimeducation.by/',
+        'sec-ch-ua': '"Chromium";v="142", "Google Chrome";v="142", "Not_A Brand";v="99"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'cross-site',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36',
+        'Cookie': '__ddg10_=1763555538; __ddg1_=GCcDAcXlNT32wwyZlpJy; __ddg8_=jBfmByeiU1UhxZJ5; __ddg9_=37.214.65.148'
+    }
+    response = requests.request('POST', URL, headers=headers, data=payload)
+
+    response_json = response.json()
+
+    print(response_json)
+
+    assert response_json["error"] == 'Missing password', 'Неверный текст ошибки'
+
+    assert response.status_code == 400, 'Неверный статус код'
