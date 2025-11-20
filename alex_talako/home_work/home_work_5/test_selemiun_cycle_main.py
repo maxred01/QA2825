@@ -12,7 +12,7 @@ def test_selenium_with_cycle():
     driver.maximize_window()
     driver.get('https://tryhackme.com/')
     time.sleep(3)
-    driver.find_element(By.XPATH, '//button[@class="sc-jEACwC hnVovF sc-ikxrtH cCOdIo"]').click()
+    driver.find_element((By.XPATH, '//button[contains(., "Got it!")]')).click()
     time.sleep(3)
     driver.find_element(By.XPATH, '//*[@aria-label="Navigate to Learn page"]').click()
     time.sleep(2)
