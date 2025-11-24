@@ -1,5 +1,5 @@
 from anna_voytovich.class_work.class_work_12.locators.service_services import MainPage
-
+import pytest_check as check
 
 def test_header(web_browser):
     '''Этот теcт проверяет элементы на странице хэдера'''

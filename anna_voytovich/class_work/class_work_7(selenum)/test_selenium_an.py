@@ -17,11 +17,11 @@ def test_selenium():
     assert element.is_enabled(), 'Элемент не кликабелен'
     assert element.text == 'Регистрация домена', f'Неверный текст. Получено {element.text}'
     driver.find_element(By.XPATH, '/html/body/header/div[1]/div/div[3]/div/div[1]/div[1]/span').click()
-    driver.find_element(By.XPATH, '//input[@placeholder="Введите домен или слово"]').send_keys('test')
+    driver.find_element(By.XPATH, '//input[@placeholder="Введите домен или слово"]').send_keys('tests')
     driver.find_element(By.XPATH, '//button[@class="m-button grey m-icon"]').click()
     time.sleep(3)
     # element_text = driver.find_element(By.XPATH, )
-    # assert element_text.text == 'test.by', f'Неверный текст домена'
+    # assert element_text.text == 'tests.by', f'Неверный текст домена'
     driver.execute_script('window.scrollBy(0, 500)')
 
 

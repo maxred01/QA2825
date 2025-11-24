@@ -24,9 +24,9 @@ def test_application_status_code(url, expected_status_code):
         url = "https://superjet.rostsayt.ru/"
 
         payload = {
-            "Имя": "test",
+            "Имя": "tests",
             "Фамилия": "tester",
-            "Телефон": "test",
+            "Телефон": "tests",
             "Телефон*": "+564841213579",
             "E-mail": "test_test@gmail.com"
         }
