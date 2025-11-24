@@ -1,5 +1,5 @@
 import time
-from alex_talako.home_work.home_work_6.pom_site.locators.other_locators_on_main_page.other_locators import MainPage
+from alex_talako.home_work.home_work_6.pom_site.locators.body_locators.body_locators import MainPage
 
 
 def test_other_locators(web_browser):
