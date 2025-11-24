@@ -13,7 +13,7 @@ class MainPage(WebPage):
 
         super().__init__(web_driver, url)
 
-    btn_cookie = WebElement(xpath="//button[contains(., 'Got it!')]")
+    btn_cookie = WebElement(xpath = '//button[text()="Got it!"]')
     btn_header_hacktivities = WebElement(xpath='//*[@aria-label="Navigate to Learn page"]')
     btn_header_practice = WebElement(xpath='//*[@aria-label="Toggle dropdown for Practice"]')
     btn_header_compete = WebElement(xpath='//*[@aria-label="Toggle dropdown for Compete"]')
