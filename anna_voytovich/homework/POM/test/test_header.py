@@ -1,4 +1,4 @@
-from anna_voytovich.homework.POM.locators.headers.headers import MainPage
+from DP.anna_voytovich.class_work.POM.locators.headers.headers import MainPage
 
 
 
