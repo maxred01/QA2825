@@ -1,7 +1,7 @@
 import os
-from DP.anna_voytovich.class_work.POM.page.base_page import WebPage
-from DP.anna_voytovich.class_work.POM.page.elements import WebElement
-from DP.anna_voytovich.class_work.POM.page.elements import ManyWebElements
+from anna_voytovich.homework.POM.page.base_page import WebPage
+from anna_voytovich.homework.POM.page.elements import WebElement
+from anna_voytovich.homework.POM.page.elements import ManyWebElements
 
 
 class MainPage(WebPage):

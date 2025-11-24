@@ -1,5 +1,5 @@
-from DP.anna_voytovich.class_work.POM.locators.headers.headers import MainPage
-
+from anna_voytovich.homework.POM.locators.headers.headers import MainPage
+import pytest_check as check
 
 
 def test_header(web_browser):
@@ -14,7 +14,7 @@ def test_header(web_browser):
     ]
 
     for locator, expected_text in header_locators:
-       assert locator.is_visible(), f'{locator} is not visible'
-       assert locator.is_clickable(), f'{locator} is not clickable'
-       actual_text = locator.get_text().strip()
-       assert actual_text == expected_text, f'{actual_text} != {expected_text}'
+        check.is_true(locator.is_visible()), f'{locator} is not visible'
+        check.is_true(locator.is_clickable()), f'{locator} is not clickable'
+        actual_text = locator.get_text().strip()
+        check.is_true(actual_text == expected_text), f'{actual_text} != {expected_text}'
