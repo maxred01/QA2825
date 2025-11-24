@@ -11,7 +11,7 @@ def test_api_post():
     with allure.step('Подготовка тестовых данных'):
         url = "https://zelgavan.by/forms/callback"
 
-        payload = {'name': 'test',
+        payload = {'name': 'tests',
                    'phone': '+375 (00) 000-00-00',
                    'form_name': 'Форма расскажем больше'}
         files = [

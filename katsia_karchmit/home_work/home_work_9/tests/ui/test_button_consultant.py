@@ -15,7 +15,7 @@ def test_button_consultant(web_browser):
     driver.name_input.send_keys('Karl')
     driver.city_input.send_keys('Минск')
     driver.phone_input.send_keys('+375291234567')
-    driver.email_input.send_keys('test@example.com')
+    driver.email_input.send_keys('tests@example.com')
     driver.message_textarea.send_keys('Нужна консультация по ремонту')
 
     # Закрытие формы

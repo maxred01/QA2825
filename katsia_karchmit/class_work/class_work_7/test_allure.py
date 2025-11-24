@@ -11,7 +11,7 @@ def test_api_post():
     with allure.step("Подготовка тестовых данных"):
         url = "https://zrobim.by/"
 
-        payload = 'formid=modal&name=TGHkldso&city=NJH&phone=86544895&email=test%40test.mail.ru&comment=a%3F&org='
+        payload = 'formid=modal&name=TGHkldso&city=NJH&phone=86544895&email=tests%40test.mail.ru&comment=a%3F&org='
 
         headers = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
