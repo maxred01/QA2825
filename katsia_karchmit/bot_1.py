@@ -31,12 +31,12 @@ async def execute_command(cmd: str, update: Update, timeout: int = 300) -> str:
         return f"⚠️ Ошибка: {str(e)}"
 
 
-async def run_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def run_all_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Запуск тестов и сохранение результатов"""
     await update.message.reply_text("🔍 Запускаю тесты...")
 
     # Подготовка директории для результатов
-    results_dir = Path("./allure-results")
+    results_dir = Path("class_work/class_work_8/allure-results")
     results_dir.mkdir(exist_ok=True)
 
     # Очистка предыдущих результатов
@@ -45,7 +45,65 @@ async def run_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Запуск pytest
     result = await execute_command(
-        "pytest -s -v test_allure.py --alluredir=./allure-results",
+        "pytest -s -v home_work/home_work_9/tests --alluredir=./allure-results",
+        update
+    )
+
+    # Проверка наличия результатов тестов
+    # if not any(results_dir.iterdir()):
+    #     await update.message.reply_text("⚠️ Внимание: allure-results пуст. Возможно, тесты не запустились.")
+    #     return
+
+    # Отправка сокращенного отчета
+    short_result = "\n".join([line for line in result.split("\n") if "FAILED" in line or "ERROR" in line])
+    await update.message.reply_text(
+        f"📊 Результаты тестов:\n{short_result[:3000]}" if short_result else "✅ Все тесты прошли успешно!"
+    )
+
+async def run_ui_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Запуск тестов и сохранение результатов"""
+    await update.message.reply_text("🔍 Запускаю тесты...")
+
+    # Подготовка директории для результатов
+    results_dir = Path("class_work/class_work_8/allure-results")
+    results_dir.mkdir(exist_ok=True)
+
+    # Очистка предыдущих результатов
+    for file in results_dir.glob("*"):
+        file.unlink()
+
+    # Запуск pytest
+    result = await execute_command(
+        "pytest -s -v home_work/home_work_9/tests/ui --alluredir=./allure-results",
+        update
+    )
+
+    # Проверка наличия результатов тестов
+    # if not any(results_dir.iterdir()):
+    #     await update.message.reply_text("⚠️ Внимание: allure-results пуст. Возможно, тесты не запустились.")
+    #     return
+
+    # Отправка сокращенного отчета
+    short_result = "\n".join([line for line in result.split("\n") if "FAILED" in line or "ERROR" in line])
+    await update.message.reply_text(
+        f"📊 Результаты тестов:\n{short_result[:3000]}" if short_result else "✅ Все тесты прошли успешно!"
+    )
+
+async def run_api_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Запуск тестов и сохранение результатов"""
+    await update.message.reply_text("🔍 Запускаю тесты...")
+
+    # Подготовка директории для результатов
+    results_dir = Path("class_work/class_work_8/allure-results")
+    results_dir.mkdir(exist_ok=True)
+
+    # Очистка предыдущих результатов
+    for file in results_dir.glob("*"):
+        file.unlink()
+
+    # Запуск pytest
+    result = await execute_command(
+        "pytest -s -v home_work/home_work_9/tests/api --alluredir=./allure-results",
         update
     )
 
@@ -65,7 +123,7 @@ async def generate_allure_report(update: Update, context: ContextTypes.DEFAULT_T
     """Генерация отчета и отправка архива"""
     try:
         # Проверка наличия результатов тестов
-        results_dir = Path("./allure-results")
+        results_dir = Path("class_work/class_work_8/allure-results")
         if not results_dir.exists() or not any(results_dir.iterdir()):
             await update.message.reply_text("❌ Нет данных для отчета: папка allure-results пуста или отсутствует")
             return
@@ -103,7 +161,7 @@ async def generate_allure_report(update: Update, context: ContextTypes.DEFAULT_T
             for root, _, files in os.walk(results_dir):
                 for file in files:
                     file_path = Path(root) / file
-                    arcname = os.path.join("allure-results", os.path.relpath(file_path, results_dir))
+                    arcname = os.path.join("class_work/class_work_8/allure-results", os.path.relpath(file_path, results_dir))
                     zipf.write(file_path, arcname=arcname)
 
         # Отправка архива
@@ -126,7 +184,7 @@ async def generate_allure_report(update: Update, context: ContextTypes.DEFAULT_T
 
 async def full_cycle(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Полный цикл: тесты + отчет"""
-    await run_tests(update, context)
+    await run_all_tests(update, context)
     await generate_allure_report(update, context)
 
 
@@ -142,7 +200,9 @@ def main():
     application = Application.builder().token("8451173974:AAFo5AlYwFQHegpbQC1l00BSfYhwG4Pjss4").build()
 
     handlers = [
-        CommandHandler("runtests", run_tests),
+        CommandHandler("run_all_tests", run_all_tests),
+        CommandHandler("run_ui_tests", run_ui_tests),
+        CommandHandler("run_api_tests", run_api_tests),
         CommandHandler("allurereport", generate_allure_report),
         CommandHandler("fullreport", full_cycle),
         CommandHandler("about", about),

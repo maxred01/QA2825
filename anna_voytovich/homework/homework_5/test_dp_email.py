@@ -9,17 +9,17 @@ import allure
 
 @allure.title('Проверка ввода адреса электронной почты')
 @pytest.mark.parametrize("email" , [None,
-                                    "tester@test.com",
-                                    " tester@test.com",
-                                    "tester @test.com",
-                                    "@test.ru",
+                                    "tester@tests.com",
+                                    " tester@tests.com",
+                                    "tester @tests.com",
+                                    "@tests.ru",
                                     "tester",
                                     "374098-",
                                     "vj;oajf",
                                     "",
                                     " ",
-                                    "tester@test.com ",
-                                    "tester@test.",
+                                    "tester@tests.com ",
+                                    "tester@tests.",
                                     "tester@.com",
 
 ])

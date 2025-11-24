@@ -10,14 +10,14 @@ import pytest, json, requests, random, allure
 @allure.tag("Smoke")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.link("https://tryhackme.com/", name="Website")
-@allure.description("This test attempts to log into the website using a login and a password. Fails if any error happens.\n\nNote that this test does not test 2-Factor Authentication.")
+@allure.description("This tests attempts to log into the website using a login and a password. Fails if any error happens.\n\nNote that this tests does not tests 2-Factor Authentication.")
 def test_api_post():
     """Этот тест делает что и мы чисто хотим понять че делает title"""
     with allure.step('Подготовка тестовых данных для api'):
         url = "https://tryhackme.com/api/v2/auth/login"
 
         payload = json.dumps({
-            "email": 'test@gnail.com',
+            "email": 'tests@gnail.com',
             "password": '12345qwer',
         })
 
