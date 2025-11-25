@@ -1,8 +1,8 @@
 import os
 
-from DP.alex_talako.pom_site.page.base_page import WebPage
-from DP.alex_talako.pom_site.page.elements import WebElement
-from DP.alex_talako.pom_site.page.elements import ManyWebElements
+from alex_talako.home_work.home_work_6.pom_site.page.base_page import WebPage
+from alex_talako.home_work.home_work_6.pom_site.page.elements import WebElement
+from alex_talako.home_work.home_work_6.pom_site.page.elements import ManyWebElements
 
 
 class MainPage(WebPage):
@@ -16,7 +16,7 @@ class MainPage(WebPage):
     btn_cookie = WebElement(xpath = '//button[text()="Got it!"]')
     btn_email = WebElement(xpath = '//*[@aria-label="Email address"]')
     btn_join_near_email = WebElement(xpath = '//*[@data-testid="sc-banner"]//button')
-    btn_web_applic_red_teaming = WebElement(xpath='//*[@data-testid="path-card-container-0"]')
+    btn_web_application_red_teaming = WebElement(xpath='//*[@data-testid="path-card-container-0"]')
     btn_container_cyber_security = WebElement(xpath='//*[@data-testid="path-card-container-1"]')
     btn_soc_level_one = WebElement(xpath='//*[@data-testid="path-card-container-2"]')
     btn_pre_security = WebElement(xpath='//*[@data-testid="path-card-container-3"]')
