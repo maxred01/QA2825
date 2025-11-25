@@ -1,8 +1,8 @@
 import time
 import allure
+import pytest_check as check
 
-
-from DP.alex_talako.pom_site.locators.body_locators.body_locators import MainPage
+from alex_talako.home_work.home_work_6.pom_site.locators.body_locators.body_locators import MainPage
 
 @allure.description("""Этот тест проверяет остальные локаторы на странице, кроме хэдера и футера""")
 def test_body(web_browser):
@@ -14,7 +14,7 @@ def test_body(web_browser):
     locators = [
         (driver.btn_email,''),
         (driver.btn_join_near_email,'Join for FREE'),
-        (driver.btn_web_applic_red_teaming,'Web Application Red Teaming\nEnroll in Path'),
+        (driver.btn_web_application_red_teaming,'Web Application Red Teaming\nEnroll in Path'),
         (driver.btn_container_cyber_security,'Cyber Security 101\nEnroll in Path'),
         (driver.btn_soc_level_one,'SOC Level 1\nEnroll in Path'),
         (driver.btn_dot_first, ''),
@@ -103,12 +103,7 @@ def test_body(web_browser):
     driver.btn_dot_sixth.click()
     time.sleep(1)
 
-    locators_after_click_dot_5 = [
-        (driver.btn_comp_tia, 'CompTIA Pentest+\nEnroll in Path'),
-    ]
+    check.equal(driver.btn_comp_tia.get_text(), 'CompTIA Pentest+\nEnroll in Path', 'Элемент содержит неверный текст')
+    check.is_true(driver.btn_comp_tia.is_visible(), f'Элемент отсутствует на экране')
+    check.is_true(driver.btn_comp_tia.is_clickable(), f'Элемент не кликабелен')
 
-    for locator, expected_text in locators_after_click_dot_5:
-        assert locator.is_visible(), f'Элемент "{expected_text}" отсутствует на экране'
-        actual_text = locator.get_text().strip()
-        assert actual_text == expected_text, f'Неверный текст. Ожидаемый текст "{expected_text}". Актуальный текст "{actual_text}"'
-        assert locator.is_clickable(), f'Элемент "{expected_text}" не кликабелен'
