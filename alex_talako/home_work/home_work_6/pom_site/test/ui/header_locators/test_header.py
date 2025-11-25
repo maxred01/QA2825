@@ -1,8 +1,10 @@
-from alex_talako.home_work.home_work_6.pom_site.locators.header_locators.header_locators import MainPage
+import allure
+from DP.alex_talako.pom_site.locators.header_locators.header_locators import MainPage
 
 
+@allure.description("""Этот тест проверяет элементы хэдера на странице""")
 def test_header(web_browser):
-    """Этот тест проверяет элементы на странице хэдера"""
+
 
     driver = MainPage(web_browser)
     driver.btn_cookie.click()

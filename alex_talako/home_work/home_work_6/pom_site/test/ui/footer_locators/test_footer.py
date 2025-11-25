@@ -1,7 +1,9 @@
-from alex_talako.home_work.home_work_6.pom_site.locators.footer_locators.footer_locators import MainPage
+import allure
+from DP.alex_talako.pom_site.locators.footer_locators.footer_locators import MainPage
 
+@allure.description("""Этот тест проверяет элементы футера на странице""")
 def test_footer(web_browser):
-    """Этот тест проверяет элементы футера на странице"""
+
 
     driver = MainPage(web_browser)
     driver.btn_cookie.click()
