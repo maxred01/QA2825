@@ -25,63 +25,19 @@ async def execute_command(cmd: str, update: Update, timeout: int = 300) -> str:
     except Exception as e:
         return f"⚠️ Ошибка: {str(e)}"
 
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text('Доброго времени суток! Я дипломный проект, созданный для запуска тестов, чтобы узнать подробную инфу напиши /about'
+                                    '\nДругие команды:\n'
+                                    '/api - запуск api тестов\n'
+                                    '/ui - запуск ui тестов\n /all_tests - запуск ui и api тестов вместе \n'
+                                    '/allure_report - генерирует отчет о результатах тестов \n '
+                                    '/full_report - запускает все тесты и генерирует отчет о результатах тестов')
 
-async def run_all_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Запуск тестов и сохранение результатов"""
-    await update.message.reply_text("🔍 Запускаю тесты...")
 
-    # Подготовка директории для результатов
-    results_dir = Path("./allure-results")
-    results_dir.mkdir(exist_ok=True)
-
-    # Очистка предыдущих результатов
-    for file in results_dir.glob("*"):
-        file.unlink()
-
-    # Запуск pytest
-    result = await execute_command(
-        "pytest -s -v homework/POM/test --alluredir=./allure-results",
-        update
-    )
-
-    # Проверка наличия результатов тестов
-    # if not any(results_dir.iterdir()):
-    #     await update.message.reply_text("⚠️ Внимание: allure-results пуст. Возможно, тесты не запустились.")
-    #     return
-
-    # Отправка сокращенного отчета
-    short_result = "\n".join([line for line in result.split("\n") if "FAILED" in line or "ERROR" in line])
-    await update.message.reply_text(
-        f"📊 Результаты тестов:\n{short_result[:3000]}" if short_result else "✅ Все тесты прошли успешно!"
-    )
-async def run_ui_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Запуск тестов и сохранение результатов"""
-    await update.message.reply_text("🔍 Запускаю тесты...")
-
-    # Подготовка директории для результатов
-    results_dir = Path("./allure-results")
-    results_dir.mkdir(exist_ok=True)
-
-    # Очистка предыдущих результатов
-    for file in results_dir.glob("*"):
-        file.unlink()
-
-    # Запуск pytest
-    result = await execute_command(
-        "pytest -s -v homework/POM/test/ui/ --alluredir=./allure-results",
-        update
-    )
-
-    # Проверка наличия результатов тестов
-    # if not any(results_dir.iterdir()):
-    #     await update.message.reply_text("⚠️ Внимание: allure-results пуст. Возможно, тесты не запустились.")
-    #     return
-
-    # Отправка сокращенного отчета
-    short_result = "\n".join([line for line in result.split("\n") if "FAILED" in line or "ERROR" in line])
-    await update.message.reply_text(
-        f"📊 Результаты тестов:\n{short_result[:3000]}" if short_result else "✅ Все тесты прошли успешно!"
-    )
+async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    about_text = ('Я @dp2825_bot, дипломный проект моего создателя - @anvoyt.'
+                  '\nЯ запускаю тесты, которые ты можешь выбрать из заданных категорий и наблюдать за их выполнением.\nСписок команд можешь найти нажав кнопку "меню" в левом нижнем углу).\nЕще немного информации о создателе:\nЕе зовут Аня, учиться в IT Академии "ШАГ" на мануального и автоматизированного тестировщика.\nЕсли вдруг вам понадобиться тестировщик, можете с ней связаться:\n@anvoyt - telegram,\nhttps://www.linkedin.com/in/anna-voytovich-8543a322a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app - LinkedIn.')
+    await update.message.reply_text(about_text)
 
 async def run_api_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Запуск тестов и сохранение результатов"""
@@ -111,6 +67,67 @@ async def run_api_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         f"📊 Результаты тестов:\n{short_result[:3000]}" if short_result else "✅ Все тесты прошли успешно!"
     )
+
+async def run_ui_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Запуск тестов и сохранение результатов"""
+    await update.message.reply_text("🔍 Запускаю тесты...")
+
+    # Подготовка директории для результатов
+    results_dir = Path("./allure-results")
+    results_dir.mkdir(exist_ok=True)
+
+    # Очистка предыдущих результатов
+    for file in results_dir.glob("*"):
+        file.unlink()
+
+    # Запуск pytest
+    result = await execute_command(
+        "pytest -s -v homework/POM/test/ui/ --alluredir=./allure-results",
+        update
+    )
+
+    # Проверка наличия результатов тестов
+    # if not any(results_dir.iterdir()):
+    #     await update.message.reply_text("⚠️ Внимание: allure-results пуст. Возможно, тесты не запустились.")
+    #     return
+
+    # Отправка сокращенного отчета
+    short_result = "\n".join([line for line in result.split("\n") if "FAILED" in line or "ERROR" in line])
+    await update.message.reply_text(
+        f"📊 Результаты тестов:\n{short_result[:3000]}" if short_result else "✅ Все тесты прошли успешно!"
+    )
+
+
+async def run_all_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Запуск тестов и сохранение результатов"""
+    await update.message.reply_text("🔍 Запускаю тесты...")
+
+    # Подготовка директории для результатов
+    results_dir = Path("./allure-results")
+    results_dir.mkdir(exist_ok=True)
+
+    # Очистка предыдущих результатов
+    for file in results_dir.glob("*"):
+        file.unlink()
+
+    # Запуск pytest
+    result = await execute_command(
+        "pytest -s -v homework/POM/test --alluredir=./allure-results",
+        update
+    )
+
+    # Проверка наличия результатов тестов
+    # if not any(results_dir.iterdir()):
+    #     await update.message.reply_text("⚠️ Внимание: allure-results пуст. Возможно, тесты не запустились.")
+    #     return
+
+    # Отправка сокращенного отчета
+    short_result = "\n".join([line for line in result.split("\n") if "FAILED" in line or "ERROR" in line])
+    await update.message.reply_text(
+        f"📊 Результаты тестов:\n{short_result[:3000]}" if short_result else "✅ Все тесты прошли успешно!"
+    )
+
+
 
 async def generate_allure_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Генерация отчета и отправка архива"""
@@ -181,24 +198,17 @@ async def full_cycle(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await generate_allure_report(update, context)
 
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text('Доброго времени суток! Я дипломный проект, созданный для запуска тестов, чтобы узнать подробную инфу напиши /about\nДругие команды:\n/api - запускает api тесты\n/ui - запускает ui тесты')
-
-
-async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    about_text = ('Я @dp2825_bot, дипломный проект моего создателя - @anvoyt.\nЯ запускаю тесты, которые ты можешь выбрать из заданных категорий и наблюдать за их выполнением.\nСписок команд можешь найти нажав кнопку "меню" в левом нижнем углу).\nЕще немного информации о создателе:\nЕе зовут Аня, учиться в IT Академии "ШАГ" на мануального и автоматизированного тестировщика.\nЕсли вдруг вам понадобиться тестировщик, можете с ней связаться:\n@anvoyt - telegram,\nhttps://www.linkedin.com/in/anna-voytovich-8543a322a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app - LinkedIn.')
-    await update.message.reply_text(about_text)
 
 
 def main():
     application = Application.builder().token("8353078171:AAEC9OJgRfq1gIG6n2Uhb8YbvJKaalaRcXM").build()
 
     handlers = [
-        CommandHandler("run_all_tests", run_all_tests),
-        CommandHandler("run_ui_tests", run_ui_tests),
-        CommandHandler("run_api_tests", run_api_tests),
-        CommandHandler("allurereport", generate_allure_report),
-        CommandHandler("fullreport", full_cycle),
+        CommandHandler("all_tests", run_all_tests),
+        CommandHandler("ui", run_ui_tests),
+        CommandHandler("api", run_api_tests),
+        CommandHandler("allure_report", generate_allure_report),
+        CommandHandler("full_report", full_cycle),
         CommandHandler("about", about),
         CommandHandler("start", start)
     ]
