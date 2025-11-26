@@ -1,12 +1,16 @@
 import time
+import allure
+
 from selenium.webdriver.common.keys import Keys
 from katsia_karchmit.home_work.home_work_9.locators.menu.menu_button import MainPage
 
 
+@allure.title(f'UI тест на сайте zrobim.by')
+@allure.story(f'Проверка раздела меню реализованные проекты')
 
 
 def test_completed_projects(web_browser):
-    '''Этот тест проверяет раздел меню реализованные проекты'''
+
     driver = MainPage(web_browser)
 
     # 1. Открываем меню и переходим в проекты

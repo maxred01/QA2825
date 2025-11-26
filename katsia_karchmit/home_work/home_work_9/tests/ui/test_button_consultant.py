@@ -1,8 +1,12 @@
+import allure
+
 from katsia_karchmit.home_work.home_work_9.locators.consultant.button_consultant import MainPage
 
+@allure.title(f'UI тест на сайте zrobim.by')
+@allure.story(f'Проверка кнопки консультант и заполнение всех полей формы')
 
 def test_button_consultant(web_browser):
-    '''Этот тест проверяет кнопку консультанта и заполнение всех полей формы'''
+
 
     driver = MainPage(web_browser)
 

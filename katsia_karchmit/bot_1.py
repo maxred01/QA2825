@@ -36,7 +36,7 @@ async def run_all_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🔍 Запускаю тесты...")
 
     # Подготовка директории для результатов
-    results_dir = Path("class_work/class_work_8/allure-results")
+    results_dir = Path("home_work/home_work_9/allure-results")
     results_dir.mkdir(exist_ok=True)
 
     # Очистка предыдущих результатов
@@ -65,7 +65,7 @@ async def run_ui_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🔍 Запускаю тесты...")
 
     # Подготовка директории для результатов
-    results_dir = Path("class_work/class_work_8/allure-results")
+    results_dir = Path("home_work/home_work_9/allure-results")
     results_dir.mkdir(exist_ok=True)
 
     # Очистка предыдущих результатов
@@ -94,7 +94,7 @@ async def run_api_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🔍 Запускаю тесты...")
 
     # Подготовка директории для результатов
-    results_dir = Path("class_work/class_work_8/allure-results")
+    results_dir = Path("home_work/home_work_9/allure-results")
     results_dir.mkdir(exist_ok=True)
 
     # Очистка предыдущих результатов
@@ -123,7 +123,7 @@ async def generate_allure_report(update: Update, context: ContextTypes.DEFAULT_T
     """Генерация отчета и отправка архива"""
     try:
         # Проверка наличия результатов тестов
-        results_dir = Path("class_work/class_work_8/allure-results")
+        results_dir = Path("home_work/home_work_9/allure-results")
         if not results_dir.exists() or not any(results_dir.iterdir()):
             await update.message.reply_text("❌ Нет данных для отчета: папка allure-results пуста или отсутствует")
             return
@@ -161,7 +161,7 @@ async def generate_allure_report(update: Update, context: ContextTypes.DEFAULT_T
             for root, _, files in os.walk(results_dir):
                 for file in files:
                     file_path = Path(root) / file
-                    arcname = os.path.join("class_work/class_work_8/allure-results", os.path.relpath(file_path, results_dir))
+                    arcname = os.path.join("home_work/home_work_9/allure-results", os.path.relpath(file_path, results_dir))
                     zipf.write(file_path, arcname=arcname)
 
         # Отправка архива
