@@ -1,12 +1,25 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 
 #поиск элементов главной менюшки главной страницы
 def test_menu_autogroup():
     driver = webdriver.Chrome()
     driver.get('https://autogroup.by/')
+    time.sleep(2)
+    data=[
+        (driver.find_element(By.XPATH,"(//*[contains(concat(' ', normalize-space(@class), ' '), ' dropdown__title ')])[1]"), 'Кнопки Направления нет'),
+        (driver.find_element(By.XPATH,"(//*[contains(concat(' ', normalize-space(@class), ' '), ' dropdown__title ')])[2]"),'Кнопки Каталог нет'),
+        (driver.find_element(By.XPATH,"(//*[contains(concat(' ', normalize-space(@class), ' '), ' dropdown__title ')])[3]"),'Кнопки Доставка нет'),
+        (driver.find_element(By.XPATH,"(//*[contains(concat(' ', normalize-space(@class), ' '), ' dropdown__title ')])[4]"),'Кнопки Инфо нет'),
+        (driver.find_element(By.XPATH,"(//*[contains(concat(' ', normalize-space(@class), ' '), ' dropdown__title ')])[5]"),'Кнопки Услуги нет'),
+        (driver.find_element(By.XPATH,"(//*[contains(concat(' ', normalize-space(@class), ' '), ' dropdown__title ')])[6]"),'Кнопки Оплата нет'),
+        (driver.find_element(By.XPATH,"(//header//a)[32]"),'Кнопки Доставка нет')
+    ]
+
+    for element, text in data:
+        assert element.is_enabled(), f'Элемент {text} не кликабелен'
+        assert element.is_displayed(), f'Элемента {text} нет'
 
     element_one = driver.find_element(By.XPATH,"(//*[contains(concat(' ', normalize-space(@class), ' '), ' dropdown__title ')])[1]")
     assert element_one.is_displayed, 'Элемента нет'
@@ -35,4 +48,3 @@ def test_menu_autogroup():
     element_seven = driver.find_element(By.XPATH,"(//header//a)[32]")
     assert element_seven.is_displayed, 'Элемента нет'
     assert element_seven.is_enabled, 'Элемент не кликабелен'
-
