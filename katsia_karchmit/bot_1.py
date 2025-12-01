@@ -189,10 +189,10 @@ async def full_cycle(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text('Привет! Я пример чат-бота дипломного проекта. Помогаю запускать автоматически тесты для проверки работы сайта. Отлично налаженная работа сайта - гарантия довольного клиента для бизнеса. Напиши /about чтобы узнать обо мне, ')
+    await update.message.reply_text('Привет! Я чат-бот дипломного проекта. Помогаю запускать автоматически тесты для проверки работы сайта. \nОтлично налаженная работа сайта - гарантия довольного клиента для бизнеса. \nНапиши /about, чтобы узнать обо мне; \n/run_api_tests, чтобы запустить api тесты; \n/run_ui_tests, чтобы запустить ui тесты; \n/allure_report, чтобы сформировать отчет о пройденных тестах; \n/full_cycle, чтобы запустить все тесты и сформировать отчет ')
 
 async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    about_text= 'Я ,Екатерина Карчмит, написала чат-бот @zrobim_bot, чтобы запускать тесты для проверки сайта Zrobim.by в рамках подготовки дипломного проекта.\nПрохожу обучение в IT ШАГ по специальности "Ручное и автоматизированное тестирование". \nМотивированный начинающий QA с сильной любознательностью и стремлением к деталям. \nОбладаю аналитическим складом ума и терпением для кропотливой работы. \nВладею следующими техническими навыками (Hard Skills): \n-  оформляла тест-кейсы, чек-листы для веб-приложений, баг-репорты в Jira; \n- базовые знания API-тестирования: отправка запросов в Postman (GET/POST/PUT/DELETE), проверка статус-кодов и структуры ответов, чтение JSON; \n- простые SQL-запросы для проверки данных в БД (SELECT, WHERE, JOIN); \n- использую Chrome DevTools для анализа элементов страницы и сетевых запросов (просмотр элементов, вкладка Network); \n- понимание структуры страницы (HTML/CSS); \n- понимание клиент-серверной архитектуры (HTTP-методы, статус-коды); \n- базовые навыки работы в Linux (навигация в терминале, управление файлами, анализ логов); \n- базовые навыки в языке программирования Python; \n- основы автоматизации (работа с GIT, Allure, PyCharm). \nМои контакты: тел.+375(33)314 42 30; \ne-mail - yekaterina.karchmit@mail.ru; \nLinkedIn - https://www.linkedin.com/in/katsiaryna-karchmit-39b513364?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app  '
+    about_text= 'Я ,Екатерина Карчмит, написала чат-бот @zrobim_bot, чтобы запускать тесты для проверки сайта Zrobim.by в рамках подготовки дипломного проекта.\nПрохожу обучение в IT ШАГ по специальности "Ручное и автоматизированное тестирование". \nМотивированный начинающий QA с сильной любознательностью и стремлением к деталям. \nМои контакты: тел.+375(33)314 42 30; \ne-mail - yekaterina.karchmit@mail.ru; \nLinkedIn - https://www.linkedin.com/in/katsiaryna-karchmit-39b513364?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app  '
     await update.message.reply_text(about_text)
 
 
@@ -203,15 +203,20 @@ def main():
         CommandHandler("run_all_tests", run_all_tests),
         CommandHandler("run_ui_tests", run_ui_tests),
         CommandHandler("run_api_tests", run_api_tests),
-        CommandHandler("allurereport", generate_allure_report),
-        CommandHandler("fullreport", full_cycle),
+        CommandHandler("allure_report", generate_allure_report),
+        CommandHandler("full_cycle", full_cycle),
         CommandHandler("about", about),
-        CommandHandler("start", start)
+        CommandHandler("start", start),
+        CommandHandler("run_api_tests", run_api_tests),
+        CommandHandler("run_ui_tests", run_ui_tests)
     ]
 
     for handler in handlers:
         application.add_handler(handler)
 
+    application.run_polling()
+
+    print('Бот запущен')
     application.run_polling()
 
 

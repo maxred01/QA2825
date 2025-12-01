@@ -15,16 +15,7 @@ class MainPage(WebPage):
     video_element = WebElement(xpath="//*[@data-caption='LEV APARTMENT' and contains(@class, 'youtube__item')]")
     video_play_button = WebElement(xpath="//button[@class='ytp-play-button ytp-button']")
     video_close_button = WebElement(xpath="//*[contains(@class, 'fancybox-slide')]")
-    # Вакансии
-    vacancies_button = WebElement(xpath='//a[contains(text(),"Вакансии") and //div[@id="menu"]]')
-    text_field_name = WebElement(xpath='//input[@name="name"][1]')
-    text_field_surname = WebElement(xpath='//*[@name="lastname"]')
-    next_button = WebElement(xpath='((//*[@data-styles-apllied="true"])[1]//button)[1]')
-    text_field_job = WebElement(xpath='(//*[@type="string"])[1]')
-    text_field_link_portfolio = WebElement(xpath='(//*[@type="string"])[2]')
-    further_button = WebElement(xpath='((//*[@data-styles-apllied="true"])[1]//button)[2]')
-    text_field_phone = WebElement(xpath='(//input[@name="phone"])[1]')
-    text_field_email = WebElement(xpath='(//*[@name="email"])[1]')
+
     # Контакты
     contacts_button = WebElement(xpath='//a[text()="Контакты"]')
     text_field_name_contacts = WebElement(xpath='(//*[@name="name"])[1]')
