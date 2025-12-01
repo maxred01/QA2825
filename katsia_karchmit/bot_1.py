@@ -11,7 +11,7 @@ import zipfile
 import time
 import asyncio
 from pathlib import Path
-
+import ollama, aiogram
 
 async def execute_command(cmd: str, update: Update, timeout: int = 300) -> str:
     """Выполняет shell-команду с таймаутом и возвращает результат"""
@@ -195,6 +195,20 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
     about_text= 'Я ,Екатерина Карчмит, написала чат-бот @zrobim_bot, чтобы запускать тесты для проверки сайта Zrobim.by в рамках подготовки дипломного проекта.\nПрохожу обучение в IT ШАГ по специальности "Ручное и автоматизированное тестирование". \nМотивированный начинающий QA с сильной любознательностью и стремлением к деталям. \nМои контакты: тел.+375(33)314 42 30; \ne-mail - yekaterina.karchmit@mail.ru; \nLinkedIn - https://www.linkedin.com/in/katsiaryna-karchmit-39b513364?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app  '
     await update.message.reply_text(about_text)
 
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_message = update.message.text
+
+    await update.message.chat.send_action(action='typing')
+
+    try:
+        response = ollama.chat(model='llama3.2:1b-instruct-q3_K_S',
+                               messages=[{'role': 'user', 'content': user_message}])
+
+        await update.message.reply_text(response['message']['content'])
+
+
+    except Exception as e:
+        await update.message.reply_text(f'Ошибка: {str(e)}')
 
 def main():
     application = Application.builder().token("8451173974:AAFo5AlYwFQHegpbQC1l00BSfYhwG4Pjss4").build()
@@ -208,7 +222,8 @@ def main():
         CommandHandler("about", about),
         CommandHandler("start", start),
         CommandHandler("run_api_tests", run_api_tests),
-        CommandHandler("run_ui_tests", run_ui_tests)
+        CommandHandler("run_ui_tests", run_ui_tests),
+        CommandHandler("handle_message", handle_message)
     ]
 
     for handler in handlers:
