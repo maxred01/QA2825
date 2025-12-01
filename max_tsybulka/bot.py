@@ -4,6 +4,7 @@ import os
 import zipfile
 import time
 import asyncio
+import ollama, aiogram
 from pathlib import Path
 
 
@@ -197,6 +198,27 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(about_text)
 
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_message = update.message.text
+
+    await update.message.chat.send_action(action="typing")
+
+    try:
+        response = ollama.chat(
+            model='llama3.2:1b-instruct-q2_K',
+            messages=[
+                {
+                    'role': 'user',
+                    'content': user_message
+                }
+            ]
+        )
+
+        answer = response['message']['content']
+        await update.message.reply_text(answer)
+
+    except Exception as e:
+        await update.message.reply_text(f"Ошибка: {str(e)}")
 
 def main():
     application = Application.builder().token('8423095564:AAEj2-_bd1laQXoOV1aOLX5jK7eXaluJKtg').build()
@@ -208,7 +230,8 @@ def main():
         CommandHandler("allurereport", generate_allure_report),
         CommandHandler("fullreport", full_cycle),
         CommandHandler("about", about),
-        CommandHandler("start", start)
+        CommandHandler("start", start),
+        CommandHandler("handle_message", handle_message)
 
     ]
 
