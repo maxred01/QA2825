@@ -1,4 +1,4 @@
-from anna_voytovich.homework.POM.locators.footers.footers import MainPage
+from anna_voytovich.homework.POM.locators.footers import MainPage
 import pytest_check as check
 
 def test_footer(web_browser):

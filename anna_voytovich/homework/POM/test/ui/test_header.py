@@ -1,4 +1,4 @@
-from anna_voytovich.homework.POM.locators.headers.headers import MainPage
+from anna_voytovich.homework.POM.locators.headers import MainPage
 import pytest_check as check
 
 

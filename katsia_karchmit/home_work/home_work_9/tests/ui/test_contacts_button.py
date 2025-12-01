@@ -1,11 +1,15 @@
 import time
+import allure
+
 from katsia_karchmit.home_work.home_work_9.locators.menu.menu_button import MainPage
 
+@allure.title(f'UI тест на сайте zrobim.by')
+@allure.story(f'Проверка раздела меню контакты')
 
 
 
 def test_contacts_button(web_browser):
-    '''Этот тест проверяет раздел меню контакты'''
+
     driver = MainPage(web_browser)
 
     # 1. Открываем меню и переходим в проекты
