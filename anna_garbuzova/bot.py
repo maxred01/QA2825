@@ -6,6 +6,7 @@ import zipfile
 import time
 import asyncio
 import ollama
+import logging
 from pathlib import Path
 
 from anna_garbuzova.class_work.class_work_3.API import response
@@ -197,20 +198,47 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(about_text)
 
-async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_message = update.message.text
+# async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+#     user_message = update.message.text
+#
+#     await update.message.chat.send_action(action='typing')
+#
+#     try:
+#         response = ollama.chat(model='llama3.2:1b-instruct-q2_K',
+#                                messages=[{'role': 'user', 'content': user_message}])
+#
+#         await update.message.reply_text(response['message']['content'])
+#
+#
+#     except Exception as e:
+#         await update.message.reply_text(f'Ошибка: {str(e)}')
 
-    await update.message.chat.send_action(action='typing')
+user_ids = {}
+context_memory = {}
+# Функция для обработки обычных сообщений
+async def handle_message(update: Update, context):
+    user_id = update.effective_user.id
+    if user_id not in user_ids:
+        user_ids[user_id] = {'last_message': None, 'preferences': {}}
+        context_memory[user_id] = []
+
+    message_text = update.message.text
+    context_messages = context_memory[user_id]
+
+    # Добавляем новое сообщение в контекст
+    context_messages.append({'role': 'user', 'content': message_text})
+
+    # Ограничиваем историю контекста последними 8 сообщениями
+    context_memory[user_id] = context_messages[-8:]
 
     try:
-        response = ollama.chat(model='llama3.2:1b-instruct-q2_K',
-                               messages=[{'role': 'user', 'content': user_message}])
-
+        # Call the ollama.chat function with the context messages
+        response = ollama.chat(model='llama3.2:1b-instruct-q2_K', messages=context_memory[user_id])
+        # Отправляем ответ пользователю
         await update.message.reply_text(response['message']['content'])
-
-
     except Exception as e:
-        await update.message.reply_text(f'Ошибка: {str(e)}')
+        logging.error(f"Error while getting response from ollama: {e}")
+        await update.message.reply_text('Произошла ошибка, попробуйте позже.')
 
 def main():
     application = Application.builder().token('8003196291:AAEJg8rUllORuLN-8rJ6GHF5UwRAJS_3aR0').build()
