@@ -1,10 +1,14 @@
 from telegram import Update
+from telegram.constants import ChatAction
 from telegram.ext import Application, CommandHandler, ContextTypes
 import os
 import zipfile
 import time
 import asyncio
+import ollama
 from pathlib import Path
+
+from anna_garbuzova.class_work.class_work_3.API import response
 
 
 async def execute_command(cmd: str, update: Update, timeout: int = 300) -> str:
@@ -193,6 +197,20 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(about_text)
 
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_message = update.message.text
+
+    await update.message.chat.send_action(action='typing')
+
+    try:
+        response = ollama.chat(model='llama3.2:1b-instruct-q2_K',
+                               messages=[{'role': 'user', 'content': user_message}])
+
+        await update.message.reply_text(response['message']['content'])
+
+
+    except Exception as e:
+        await update.message.reply_text(f'Ошибка: {str(e)}')
 
 def main():
     application = Application.builder().token('8003196291:AAEJg8rUllORuLN-8rJ6GHF5UwRAJS_3aR0').build()
@@ -204,7 +222,8 @@ def main():
         CommandHandler("allurereport", generate_allure_report),
         CommandHandler("fullreport", full_cycle),
         CommandHandler("about", about),
-        CommandHandler("start", start)
+        CommandHandler("start", start),
+        CommandHandler("handle_message", handle_message)
 
     ]
 
