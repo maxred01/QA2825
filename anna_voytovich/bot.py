@@ -1,12 +1,15 @@
 from telegram import Update
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 import os
+import logging
 import zipfile
 import time
 import asyncio
+import ollama, aiogram
 from pathlib import Path
 
 API_TOKEN = '8353078171:AAEC9OJgRfq1gIG6n2Uhb8YbvJKaalaRcXM'
+
 
 async def execute_command(cmd: str, update: Update, timeout: int = 300) -> str:
     """Выполняет shell-команду с таймаутом и возвращает результат"""
@@ -25,19 +28,22 @@ async def execute_command(cmd: str, update: Update, timeout: int = 300) -> str:
     except Exception as e:
         return f"⚠️ Ошибка: {str(e)}"
 
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text('Доброго времени суток! Я дипломный проект, созданный для запуска тестов, чтобы узнать подробную инфу напиши /about'
-                                    '\nДругие команды:\n'
-                                    '/api - запуск api тестов\n'
-                                    '/ui - запуск ui тестов\n /all_tests - запуск ui и api тестов вместе \n'
-                                    '/allure_report - генерирует отчет о результатах тестов \n '
-                                    '/full_report - запускает все тесты и генерирует отчет о результатах тестов')
+    await update.message.reply_text(
+        'Доброго времени суток! Я дипломный проект, созданный для запуска тестов, чтобы узнать подробную инфу напиши /about'
+        '\nДругие команды:\n'
+        '/api - запуск api тестов\n'
+        '/ui - запуск ui тестов\n /all_tests - запуск ui и api тестов вместе \n'
+        '/allure_report - генерирует отчет о результатах тестов \n '
+        '/full_report - запускает все тесты и генерирует отчет о результатах тестов')
 
 
 async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
     about_text = ('Я @dp2825_bot, дипломный проект моего создателя - @anvoyt.'
                   '\nЯ запускаю тесты, которые ты можешь выбрать из заданных категорий и наблюдать за их выполнением.\nСписок команд можешь найти нажав кнопку "меню" в левом нижнем углу).\nЕще немного информации о создателе:\nЕе зовут Аня, учиться в IT Академии "ШАГ" на мануального и автоматизированного тестировщика.\nЕсли вдруг вам понадобиться тестировщик, можете с ней связаться:\n@anvoyt - telegram,\nhttps://www.linkedin.com/in/anna-voytovich-8543a322a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app - LinkedIn.')
     await update.message.reply_text(about_text)
+
 
 async def run_api_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Запуск тестов и сохранение результатов"""
@@ -67,6 +73,7 @@ async def run_api_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         f"📊 Результаты тестов:\n{short_result[:3000]}" if short_result else "✅ Все тесты прошли успешно!"
     )
+
 
 async def run_ui_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Запуск тестов и сохранение результатов"""
@@ -126,7 +133,6 @@ async def run_all_tests(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         f"📊 Результаты тестов:\n{short_result[:3000]}" if short_result else "✅ Все тесты прошли успешно!"
     )
-
 
 
 async def generate_allure_report(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -198,6 +204,20 @@ async def full_cycle(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await generate_allure_report(update, context)
 
 
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_message = update.message.text
+
+    await update.message.chat.send_action(action='typing')
+
+    try:
+        response = ollama.chat(model='llama3.2:1b-instruct-q3_K_S',
+                               messages=[{'role': 'user', 'content': user_message}])
+
+        await update.message.reply_text(response['message']['content'])
+
+
+    except Exception as e:
+        await update.message.reply_text(f'Ошибка: {str(e)}')
 
 
 def main():
@@ -210,8 +230,10 @@ def main():
         CommandHandler("allure_report", generate_allure_report),
         CommandHandler("full_report", full_cycle),
         CommandHandler("about", about),
-        CommandHandler("start", start)
+        CommandHandler("start", start),
+        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message)
     ]
+
 
     for handler in handlers:
         application.add_handler(handler)
