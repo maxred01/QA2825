@@ -16,6 +16,6 @@ def test_api_post():
         }
 
     with allure.step('Вызов метода api/api/users?delay=3'):
-    response = requests.request("GET", url, headers=headers, data=payload)
+        response = requests.request("GET", url, headers=headers, data=payload)
 
 
