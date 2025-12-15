@@ -7,6 +7,12 @@ import asyncio
 import ollama, aiogram
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+token = os.getenv('BOT_TOKEN')
 
 async def execute_command(cmd: str, update: Update, timeout: int = 300) -> str:
     """Выполняет shell-команду с таймаутом и возвращает результат"""
@@ -221,7 +227,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(f"Ошибка: {str(e)}")
 
 def main():
-    application = Application.builder().token('8423095564:AAEj2-_bd1laQXoOV1aOLX5jK7eXaluJKtg').build()
+    application = Application.builder().token(token).build()
 
     handlers = [
         CommandHandler("run_all_tests", run_all_tests),
