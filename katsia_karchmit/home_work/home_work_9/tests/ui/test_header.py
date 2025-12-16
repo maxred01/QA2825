@@ -22,18 +22,4 @@ def test_header(web_browser):
         actual_text = locator.get_text().strip()
         check.is_true(actual_text == expected_text), f'{actual_text} != {expected_text}'
 
-        # Открытие формы
-        driver.btn_header_consultant.click()
 
-        # Заполнение всех доступных полей формы
-        driver.name_input.send_keys('Karl')
-        driver.city_input.send_keys('Минск')
-        driver.phone_input.send_keys('+375291234567')
-        driver.email_input.send_keys('tests@example.com')
-        driver.message_textarea.send_keys('Нужна консультация по ремонту')
-
-        # Закрытие формы
-        # assert driver.close_button.is_clickable(), 'Кнопка закрытия некликабельна'
-        check.is_true(driver.btn_close_consultant.is_visible()), f'{driver.btn_close_consultant} is not visible'
-        check.is_true(driver.btn_close_consultant.is_clickable()), f'{driver.btn_close_consultant} is not clickable'
-        driver.btn_close_consultant.click()

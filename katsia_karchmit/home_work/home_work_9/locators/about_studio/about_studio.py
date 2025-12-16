@@ -14,3 +14,9 @@ class AboutPage(WebPage):
 
     text_architectural_bureau = WebElement(xpath=("//div[text()='Архитектурное бюро']"))
     text_zrobim = WebElement(xpath=('(//*[@data-scroll="title"])[1]//strong'))
+    text_architecture_idea = WebElement(xpath=("(//*[contains(concat(' ', normalize-space(@class), ' '), ' philosophy ')]//h4)[1]"))
+    text_project_just_beginning = WebElement(xpath=("//h4[text()='Проект — это только начало']"))
+    text_team = WebElement(xpath=("//*[@id='section']//strong"))
+    text_alexey_korablyov = WebElement(xpath=("(//*[@id='section']//*[contains(concat(' ', normalize-space(@class), ' '), ' worker__item-title ')])[1]"))
+    text_looking_superprofessional = WebElement(xpath=("(//*[contains(concat(' ', normalize-space(@class), ' '), ' section__content ')])[7]/*[2]"))
+
