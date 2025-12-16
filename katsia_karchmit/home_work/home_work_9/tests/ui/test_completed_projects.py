@@ -1,5 +1,6 @@
 import time
 import allure
+import pytest_check as check
 
 from selenium.webdriver.common.keys import Keys
 from katsia_karchmit.home_work.home_work_9.locators.menu.menu_button import MainPage
@@ -18,12 +19,15 @@ def test_completed_projects(web_browser):
     time.sleep(2)
     driver.completed_projects.click()
     driver.wait_page_loaded()
+    check.is_true(driver.text_completed_projects.is_visible()), f'{driver.text_completed_projects} is not visible'
 
     # 2. Скроллим и открываем проект
     driver._web_driver.execute_script('window.scrollBy(0,1500)')
     time.sleep(3)
     driver.project_LEV_APARTMENT.click()
     driver.wait_page_loaded()
+    check.is_true(driver.text_LEV_APARTMENT.is_visible()), f'{driver.text_LEV_APARTMENT} is not visible'
+
 
     # 3. Скроллим на странице проекта
     driver._web_driver.execute_script('window.scrollBy(0,3000)')
@@ -49,9 +53,6 @@ def test_completed_projects(web_browser):
 
         time.sleep(8)
 
-    # 5. Возвращаемся в меню
-    driver.menu_button.click()
-    time.sleep(8)
 
-    # Проверяем что меню открылось (виден какой-то пункт меню)
-    #assert driver.completed_projects.is_visible(), 'Меню не открылось после возврата'
+    # Проверяем что видео закрылось и видна кнопка меню
+    assert driver.menu_button.is_visible(), 'Меню не видно'

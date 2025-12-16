@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 import subprocess
 import os
 import sys
@@ -227,7 +227,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.chat.send_action(action='typing')
 
     try:
-        response = ollama.chat(model='llama3.2:1b-instruct-q3_K_S',
+        response = ollama.chat(model='llama3.2:latest',
                                messages=[{'role': 'user', 'content': user_message}])
 
         await update.message.reply_text(response['message']['content'])
@@ -247,7 +247,7 @@ def main():
         CommandHandler("full_cycle", full_cycle),
         CommandHandler("about", about),
         CommandHandler("start", start),
-        CommandHandler("handle_message", handle_message)
+        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message)
     ]
 
     for handler in handlers:

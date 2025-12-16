@@ -17,7 +17,7 @@ from peft import LoraConfig, PeftModel
 from trl import SFTTrainer
 from datasets import load_dataset
 
-model_name = "unsloth/llama-3-8b-bnb-4bit" # Отличная 4-битная версия для обучения
+model_name = "unsloth/llama3.2:latest" # Отличная 4-битная версия для обучения
 # Или можно взять оригинальную: "meta-llama/Meta-Llama-3-8b"
 dataset_name = "timdettmers/openassistant-guanaco"
 new_model_name = "my-llama-3-finetuned" # Имя для сохраненной модели
